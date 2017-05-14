@@ -31,16 +31,15 @@ namespace RealtimeChartIdea.Controllers.Api
                               "Pineapples",
                               "Bananas"};
 
-            dataSet.Values = getRandoms(dataSet.Labels.Length, 0, 10);
+            dataSet.Values = getRandoms(new Random(), dataSet.Labels.Length, 0, 10);
             
             return dataSet;
         }
 
 
-        private int[] getRandoms(int count, int min, int max)
+        private int[] getRandoms(Random r, int count, int min, int max)
         {
             List<int> result = new List<int>();
-            Random r = new Random();
 
             for (int i = 0; i < count; i++)
             {

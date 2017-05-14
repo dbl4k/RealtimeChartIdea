@@ -261,3 +261,4 @@ __pycache__/
 *.pyc
 /RealtimeChartIdea/bower_components
 /RealtimeChartIdea/ScaffoldingReadMe.txt
+/RealtimeChartIdea/wwwroot/lib

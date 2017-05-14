@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using RealtimeChartIdea.Models;
 
 namespace RealtimeChartIdea.Controllers.Api
 {
@@ -48,13 +49,6 @@ namespace RealtimeChartIdea.Controllers.Api
 
             return result.ToArray();
         }
-
-        // TODO extract to Models namespace...
-        public class ChartDataSet
-        {
-            public string[] Labels { get; set; }
-            public int[] Values { get; set; }
-        }
-        
+       
     }
 }

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using RealtimeChartIdea.Models;
+using RealtimeChartIdea.DataProviders;
 
 namespace RealtimeChartIdea.Controllers.Api
 {
@@ -22,32 +23,13 @@ namespace RealtimeChartIdea.Controllers.Api
         [HttpGet("{id}")]
         public ChartDataSet Details(String id)
         {
-            ChartDataSet dataSet = new ChartDataSet();
-
-            dataSet.Labels = new string[]
-                              {"Apples",
-                              "Oranges",
-                              "Pears",
-                              "Pineapples",
-                              "Bananas"};
-
-            dataSet.Values = getRandoms(new Random(), dataSet.Labels.Length, 0, 10);
-            
+            ChartDataSet dataSet = MockDataProvider.getRandomDataset(new Random());
+                        
             return dataSet;
         }
 
 
-        private int[] getRandoms(Random r, int count, int min, int max)
-        {
-            List<int> result = new List<int>();
-
-            for (int i = 0; i < count; i++)
-            {
-                result.Add(r.Next(min, max));   
-            }
-
-            return result.ToArray();
-        }
+       
        
     }
 }

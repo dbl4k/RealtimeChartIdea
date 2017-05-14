@@ -10,7 +10,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Views\Home\" />
     <Folder Include="Views\Chart\" />
     <Folder Include="wwwroot\lib\" />
   </ItemGroup>

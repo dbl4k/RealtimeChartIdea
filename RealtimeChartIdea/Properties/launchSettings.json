@@ -19,7 +19,7 @@
     "RealtimeChartIdea": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "api/values",
+      "launchUrl": "chart",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },

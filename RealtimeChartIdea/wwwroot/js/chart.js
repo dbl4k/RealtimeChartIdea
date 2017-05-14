@@ -1,46 +1,59 @@
-﻿// live data help http://jsbin.com/yitep/5/edit?html,js,output
+﻿// chart docs @ http://www.chartjs.org/docs/
 
 $(function () {
-    var ctx = document.getElementById("myChart");
+    var dataloaded = $.Event("dataloaded")
+    var ctx = document.getElementById("chartarea");
 
-    data = {
-        labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-        datasets: [{
-            data: [12, 19, 3, 5, 2, 3],
-        }],
+    var data = {
+        labels: [],
+        datasets: []
     }
 
-    options = {
+    var options = {
         animation: false,
-        responsive: true, 
-        yAxes: [{
-            display: true,
-            ticks: {
-                beginAtZero: true,
-                steps: 10,
-                stepValue: 5,
-                max: 10
-            }
-        }]
+        responsive: true
     }; 
-
-    var myChart = new Chart(ctx, {
-        type: 'bar',
-        data: data,
-        options: options
-    })
+    
+    //var myChart = new Chart(ctx, {
+    //    type: 'line',
+    //    data: data,
+    //    options: options
+    //})
 
     setInterval(function () {
         $.ajax({
             url: "/api/chartdata/1"
         }).done(function (dataSet) {
 
-            data.labels = dataSet.labels;
-            data.datasets[0].data = dataSet.values;
-        
+            // initialize
+            if (this.data == null) {
+                this.data = { datasets: [] }
+            }
+
+            // Static bar graph operation.
+            //data.labels = dataSet.labels;
+            //data.datasets[0].data = dataSet.values;
+
+            // progressive line graph.
+            var length = dataSet.values.length;
+
+            for (var i = 0; i < length; i++) {
+
+                if (this.data.datasets.length < i) {
+                    this.data.datasets.push({ data: [dataSet.values[i]] });
+                } else {
+                    this.data.datasets[i].data.push(dataSet.values[i]);
+                }
+
+                
+                
+                //data.datasets[i].data.push(dataSet.values[i]);
+                //data.datasets[i].data.shift();
+            }
+            
             new Chart(ctx, {
-                type: 'bar',
-                data: data,
+                type: 'line',
+                data: this.data,
                 options: options
             });
         });

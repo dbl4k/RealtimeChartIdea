@@ -8,20 +8,24 @@ namespace RealtimeChartIdea.DataProviders
 {
     public static class MockDataProvider
     {
-        public static ChartDataSet getRandomDataset(Random r)
+        public static ChartData getRandomData(Random r)
         {
-            ChartDataSet dataSet = new ChartDataSet();
+            ChartData data = new ChartData();
 
-            dataSet.Labels = new string[]
+            data.Labels = new string[]
                               {"Apples",
                               "Oranges",
                               "Pears",
                               "Pineapples",
                               "Bananas"};
 
-            dataSet.Values = getRandoms(r, dataSet.Labels.Length, 0, 10);
 
-            return dataSet;
+            data.Datasets = new ChartDataset[] { };
+            int[] randoms = getRandoms(r, data.Labels.Length, 0, 10);
+
+            data.Datasets[0].Data = randoms;
+            
+            return data;
         }
 
         private static int[] getRandoms(Random r, int count, int min, int max)

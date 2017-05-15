@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 
 namespace RealtimeChartIdea.Models
 {
-    public class ChartDataset
+    public class ChartData
     {
-        public string Label = null;
-        public int[] Data { get; set; }
+        public string[] Labels { get; set; }
+        public ChartDataset[] Datasets { get; set; }
     }
 }
